@@ -7,12 +7,11 @@
 # —appdir 옵션으로 설치 위치도 바꿀 수 있어요!
 
 # 바로 실행하면 적용이 잘 안됨
-sleep 0.5
+sleep 0.2
 
 # 자동실행을 위해 필요할 수도
 # export PATH+="/Users/mikim3/brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki"
 
-# 화면에 남은거 지우기
 clear
 
 echo "execute  mikim3's Mac init"
