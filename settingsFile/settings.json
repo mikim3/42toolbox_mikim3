@@ -1,0 +1,14 @@
+{
+	"42header.username" : "mikim3",
+	"42header.email" : "mikim3@student.42seoul.kr",
+	"workbench.colorTheme": "Default Dark+",
+	"editor.tabSize": 4,
+	"editor.insertSpaces": false,
+	"editor.renderWhitespace": "all",
+	"files.trimTrailingWhitespace": true,
+	"files.insertFinalNewline": true,
+	"workbench.startupEditor": "none",
+	"window.zoomLevel": 1,
+	"editor.minimap.enabled": false,
+	"files.maxMemoryForLargeFilesMB": 8000
+}
