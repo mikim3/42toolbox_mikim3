@@ -1,7 +1,10 @@
 #/bin/bash
 
 # 바로 실행하면 적용이 가끔 안됨
-sleep 0.1
+sleep 0.2
+
+# 자동실행을 위해 필요할 수도
+# export PATH+="/Users/mikim3/brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki"
 
 clear
 
@@ -24,7 +27,7 @@ EOF
 )"
 
 # link cache directories to goinfre
-# 원하는 타겟폴더에 남아있는거 지우고 goinfre로 옮기기
+# 원하는 타겟 남아있는거 지우고 goinfre로 옮기기
 TARGET=(
 	"Caches"
 	"ApplicationSupport/Code/Cache"
@@ -37,12 +40,11 @@ TARGET=(
 	"ApplicationSupport/Slack/Service Worker/CacheStorage"
 	"ApplicationSupport/Slack/Service Worker/ScriptCache"
 	"Containers/com.tinyspeck.slackmacgap"
-	"Logs"
-	"Safari"
+	# "Safari"
 	"ApplicationSupport/Code/User/workspaceStorage"
 )
 
-# "Keychains" // 자동로그인 관련해서 저장하는 폴더 삭제하면 안됨
+# "Keychains" // 자동로그인 관련해서 저장하는 폴더 삭제하면 불편해짐
 
 TARGET_INTELLIJ=(
 	"IdeaProjects"
