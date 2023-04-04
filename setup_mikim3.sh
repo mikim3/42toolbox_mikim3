@@ -1,10 +1,6 @@
 #/bin/bash
 
-# 바로 실행하면 적용이 가끔 안됨
-sleep 0.2
-
-# 자동실행을 위해 필요할 수도
-# export PATH+="/Users/mikim3/brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki"
+sleep 0.15
 
 clear
 
