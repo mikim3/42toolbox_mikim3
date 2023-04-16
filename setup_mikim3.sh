@@ -26,18 +26,18 @@ EOF
 # 원하는 타겟 남아있는거 지우고 goinfre로 옮기기
 TARGET=(
 	"Caches"
-	"ApplicationSupport/Code/Cache"
-	"ApplicationSupport/Code/CachedData"
-	"ApplicationSupport/Code/CachedExtensions"
-	"ApplicationSupport/Code/CachedExtensionVSIXs"
-	"ApplicationSupport/Code/Code Cache"
-	"ApplicationSupport/Slack/Cache"
-	"ApplicationSupport/Slack/CachedData"
-	"ApplicationSupport/Slack/Service Worker/CacheStorage"
-	"ApplicationSupport/Slack/Service Worker/ScriptCache"
+	"Application \Support/Code/Cache"
+	"Application \Support/Code/CachedData"
+	"Application \Support/Code/CachedExtensions"
+	"Application \Support/Code/CachedExtensionVSIXs"
+	"Application \Support/Code/Code Cache"
+	"Application \Support/Slack/Cache"
+	"Application \Support/Slack/CachedData"
+	"Application \Support/Slack/Service Worker/CacheStorage"
+	"Application \Support/Slack/Service Worker/ScriptCache"
 	"Containers/com.tinyspeck.slackmacgap"
 	# "Safari"
-	"ApplicationSupport/Code/User/workspaceStorage"
+	"Application \Support/Code/User/workspaceStorage"
 )
 
 # "Keychains" // 자동로그인 관련해서 저장하는 폴더 삭제하면 불편해짐
