@@ -1,6 +1,6 @@
 #/bin/bash
 
-sleep 0.15
+sleep 0.1
 
 clear
 
@@ -26,48 +26,52 @@ EOF
 # 원하는 타겟 남아있는거 지우고 goinfre로 옮기기
 TARGET=(
 	"Caches"
-	"Application \Support/Code/Cache"
-	"Application \Support/Code/CachedData"
-	"Application \Support/Code/CachedExtensions"
-	"Application \Support/Code/CachedExtensionVSIXs"
-	"Application \Support/Code/Code Cache"
-	"Application \Support/Slack/Cache"
-	"Application \Support/Slack/CachedData"
-	"Application \Support/Slack/Service Worker/CacheStorage"
-	"Application \Support/Slack/Service Worker/ScriptCache"
+	"Application Support/Code/Cache"
+	"Application Support/Code/CachedData"
+	"Application Support/Code/CachedExtensions"
+	"Application Support/Code/CachedExtensionVSIXs"
+	"Application Support/Code/Code Cache"
+	"Application Support/Slack/Cache"
+	"Application Support/Slack/CachedData"
+	"Application Support/Slack/Service Worker/CacheStorage"
+	"Application Support/Slack/Service Worker/ScriptCache"
 	"Containers/com.tinyspeck.slackmacgap"
-	# "Safari"
-	"Application \Support/Code/User/workspaceStorage"
+	# "Application Support/Code/User/workspaceStorage"
 )
+
+# VSCode 내부데이터 저장 폴더
+TARGET_VSCODE=(
+	"Application Support/Code/User/workspaceStorage"
+)
+
+DIRS_VSCODE=( $(ls -t ${TARGET_VSCODE}) )
+# 배열의 길이가 7 이상이면, 최신 7개를 제외한 디렉토리를 모두 삭제합니다.
+if [ ${#DIRS_VSCODE[@]} -gt 7 ]; then
+    for dir in "${DIRS_VSCODE[@]:7}"; do
+        rm -rf "${TARGET_VSCODE}/${DIRS_VSCODE}"
+    done
+fi
 
 # "Keychains" // 자동로그인 관련해서 저장하는 폴더 삭제하면 불편해짐
-
-TARGET_INTELLIJ=(
-	"IdeaProjects"
-)
 
 FLAG="$HOME/goinfre/is_mikim3_setup"
 
 function init_cluster_mac(){
 	echo "link Code Slack Cache dirs..."
 	for ((i = 0; i < ${#TARGET[@]}; i++)); do
-		mkdir -p "$HOME/goinfre/CachesFolder/${TARGET[$i]}"
-		rm -rf "$HOME/Library/${TARGET[$i]}"
-		ln -s "$HOME/goinfre/CachesFolder/${TARGET[$i]}" "$HOME/Library/${TARGET[$i]}"
+		if [ -d "$HOME/Library/${TARGET[$i]}" ]; then
+			if [ -L "$HOME/Library/${TARGET[$i]}" ]; then
+				echo -e "$HOME/Library/${TARGET[$i]}"
+				echo "This folder is a symbolic link"
+			else
+				mkdir "$HOME/goinfre/${TARGET[$i]}"
+				rm -rf "$HOME/Library/${TARGET[$i]}"
+				ln -s "$HOME/goinfre/${TARGET[$i]}" "$HOME/Library/${TARGET[$i]}"
+			fi
+		fi
 	done
 	echo "Complete link all Cache dirs!"
-#  touch "$FLAG"
-}
-
-function init_intellij(){
-	echo "----init_intellij----"
-	for ((i = 0; i < ${#TARGET_INTELLIJ[@]}; i++)); do
-		mkdir -p "$HOME/goinfre/${TARGET_INTELLIJ[$i]}"
-		rm -rf "$HOME/${TARGET_INTELLIJ[$i]}"
-		ln -s "$HOME/goinfre/${TARGET_INTELLIJ[$i]}" "$HOME/${TARGET_INTELLIJ[$i]}"
-	done
-	echo "Complete intellij all Cache dirs!"
-#  touch "$FLAG"
+	# touch "$FLAG"
 }
 
 if [ ! -e "$FLAG" ]; then
