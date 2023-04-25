@@ -40,7 +40,7 @@ TARGET=(
 	"Containers/com.tinyspeck.slackmacgap"
 	# "ApplicationSupport/Code/User/workspaceStorage"
 )
-
+ 
 # VSCode 내부데이터 저장 폴더
 TARGET_VSCODE=(
 	"ApplicationSupport/Code/User/workspaceStorage"
