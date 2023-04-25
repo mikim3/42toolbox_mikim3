@@ -52,7 +52,6 @@ if [ ${#DIRS_VSCODE[@]} -gt 7 ]; then
     done
 fi
 
-# "Keychains" // 자동로그인 관련해서 저장하는 폴더 삭제하면 불편해짐
 
 FLAG="$HOME/goinfre/is_mikim3_setup"
 
@@ -82,12 +81,9 @@ fi
 # set -e
 
 # (cd ~/goinfre && rm -f vscode.zip && curl -o vscode.zip -L https://az764295.vo.msecnd.net/stable/97dec172d3256f8ca4bfb2143f3f76b503ca0534/VSCode-darwin-universal.zip && rm -rf "Visual Studio Code.app" && unzip vscode.zip) | cat
-# (cd ~/goinfre && rm -f vscodium.zip && curl -o vscodium.zip -L https://github.com/VSCodium/vscodium/releases/download/1.74.3.23010/VSCodium-darwin-x64-1.74.3.23010.zip && rm -rf VSCodium.app && unzip vscodium.zip) | cat
 
 # homebrew설치
 # curl -fsSL https://raw.githubusercontent.com/hakamdev/42homebrew/master/install.sh | zsh
-
-
 
 # 용량관리 팁 du -sh * | sort -h, df -h 를 이용하면 용량관리에 엉청 도움이 됩니다.
 
