@@ -1,7 +1,6 @@
 #/bin/bash
 
 sleep 0.1
-
 clear
 
 echo "execute  mikim3's Mac init"
@@ -22,36 +21,46 @@ BANNER="$(
 EOF
 )"
 
+link_path="/Users/mikim3/Library/ApplicationSupport"
+
+if ls -l "$link_path" &>/dev/null; then
+  echo "심볼릭 링크가 존재합니다."
+else
+  	echo "심볼릭 링크가 아직 존재하지 않음으로 '$HOME/Library/ApplicationSupport'에 심볼릭링크를 만듭니다."
+	ln -s "$HOME/Library/Application Support" "$HOME/Library/ApplicationSupport"
+fi
+
 # link cache directories to goinfre
 # 원하는 타겟 남아있는거 지우고 goinfre로 옮기기
 TARGET=(
 	"Caches"
-	"Application Support/Code/Cache"
-	"Application Support/Code/CachedData"
-	"Application Support/Code/CachedExtensions"
-	"Application Support/Code/CachedExtensionVSIXs"
-	"Application Support/Code/Code Cache"
-	"Application Support/Slack/Cache"
-	"Application Support/Slack/CachedData"
-	"Application Support/Slack/Service Worker/CacheStorage"
-	"Application Support/Slack/Service Worker/ScriptCache"
+	"ApplicationSupport/Code/Cache"
+	"ApplicationSupport/Code/CachedData"
+	"ApplicationSupport/Code/CachedExtensions"
+	"ApplicationSupport/Code/CachedExtensionVSIXs"
+	"ApplicationSupport/Code/Code Cache"
+	"ApplicationSupport/Slack/Cache"
+	"ApplicationSupport/Slack/CachedData"
+	"ApplicationSupport/Slack/Service Worker/CacheStorage"
+	"ApplicationSupport/Slack/Service Worker/ScriptCache"
 	"Containers/com.tinyspeck.slackmacgap"
-	# "Application Support/Code/User/workspaceStorage"
+	# "ApplicationSupport/Code/User/workspaceStorage"
 )
 
 # VSCode 내부데이터 저장 폴더
 TARGET_VSCODE=(
-	"Application Support/Code/User/workspaceStorage"
+	"$HOME/Library/ApplicationSupport/Code/User/workspaceStorage"
 )
 
 DIRS_VSCODE=( $(ls -t ${TARGET_VSCODE}) )
 # 배열의 길이가 7 이상이면, 최신 7개를 제외한 디렉토리를 모두 삭제합니다.
 if [ ${#DIRS_VSCODE[@]} -gt 7 ]; then
     for dir in "${DIRS_VSCODE[@]:7}"; do
-        rm -rf "${TARGET_VSCODE}/${DIRS_VSCODE}"
+        rm -rf "${TARGET_VSCODE}/${dir}"
     done
 fi
 
+# "Keychains" // 자동로그인 관련해서 저장하는 폴더 삭제하면 불편해짐
 
 FLAG="$HOME/goinfre/is_mikim3_setup"
 
@@ -63,7 +72,7 @@ function init_cluster_mac(){
 				echo -e "$HOME/Library/${TARGET[$i]}"
 				echo "This folder is a symbolic link"
 			else
-				mkdir "$HOME/goinfre/${TARGET[$i]}"
+				mkdir -p "$HOME/goinfre/${TARGET[$i]}"
 				rm -rf "$HOME/Library/${TARGET[$i]}"
 				ln -s "$HOME/goinfre/${TARGET[$i]}" "$HOME/Library/${TARGET[$i]}"
 			fi
