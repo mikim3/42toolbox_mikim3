@@ -68,9 +68,8 @@ function init_cluster_mac(){
 	echo "link Code Slack Cache dirs..."
 	for ((i = 0; i < ${#TARGET[@]}; i++)); do
 		if [ -d "$HOME/Library/${TARGET[$i]}" ]; then
-			if [ -L "$HOME/Library/${TARGET[$i]}" ]; then
-				echo -e "$HOME/Library/${TARGET[$i]}"
-				echo "This folder is a symbolic link"
+			if [ -L "$HOME/Library/${TARGET[$i]}" ] && [ -d "$(readlink "$HOME/Library/${TARGET[$i]}")" ]; then
+				echo "$HOME/Library/${TARGET[$i]} The path is already symbolically linked."
 			else
 				mkdir -p "$HOME/goinfre/${TARGET[$i]}"
 				rm -rf "$HOME/Library/${TARGET[$i]}"
