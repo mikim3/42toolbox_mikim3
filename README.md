@@ -31,3 +31,16 @@ for 문을 돌면서 심볼릭링크처리를 해줍니다.
   mkdir -p "$HOME/goinfre/${TARGET[$i]}"
   rm -rf "$HOME/Library/${TARGET[$i]}"
   ln -s "$HOME/goinfre/${TARGET[$i]}" "$HOME/Library/${TARGET[$i]}"
+
+
+# setup_mikim3.sh 사용시 주의사항
+
+### setup_mikim3.sh을 사용한 이후 VSCode가 안켜져요.               
+
+- 아래 그림과 같이 자리를 옮겨도 Library에 만들어 놓은 심볼릭링크된 폴더는 여전히 goinfre에 연결되어 있습니다.  그러므로 setup_mikim3.sh을 자리마다 한번씩 돌려줘야 됩니다.
+<img width="351" alt="Screen Shot 2023-05-03 at 1 56 33 PM" src="https://user-images.githubusercontent.com/26201797/235835506-af33d059-7c95-43be-8da2-f8cfb1a2cf9c.png">
+
+
+<img width="563" alt="Screen Shot 2023-05-03 at 1 56 21 PM" src="https://user-images.githubusercontent.com/26201797/235835526-b3572701-a08f-430f-84dc-6182c7e354c3.png">
+
+
