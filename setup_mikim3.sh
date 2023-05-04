@@ -1,6 +1,6 @@
 #/bin/bash
 
-sleep 0.1
+sleep 0.2
 clear
 
 echo "execute  mikim3's Mac init"
@@ -21,7 +21,7 @@ BANNER="$(
 EOF
 )"
 
-link_path="/Users/mikim3/Library/ApplicationSupport"
+link_path="$HOME/Library/ApplicationSupport"
 
 if ls -l "$link_path" &>/dev/null; then
   echo "심볼릭 링크가 존재합니다."
@@ -67,15 +67,9 @@ FLAG="$HOME/goinfre/is_mikim3_setup"
 function init_cluster_mac(){
 	echo "link Code Slack Cache dirs..."
 	for ((i = 0; i < ${#TARGET[@]}; i++)); do
-		if [ -d "$HOME/Library/${TARGET[$i]}" ]; then
-			if [ -L "$HOME/Library/${TARGET[$i]}" ] && [ -d "$(readlink "$HOME/Library/${TARGET[$i]}")" ]; then
-				echo "$HOME/Library/${TARGET[$i]} The path is already symbolically linked."
-			else
-				mkdir -p "$HOME/goinfre/${TARGET[$i]}"
-				rm -rf "$HOME/Library/${TARGET[$i]}"
-				ln -s "$HOME/goinfre/${TARGET[$i]}" "$HOME/Library/${TARGET[$i]}"
-			fi
-		fi
+		mkdir -p "$HOME/goinfre/${TARGET[$i]}"
+		rm -rf "$HOME/Library/${TARGET[$i]}"
+		ln -s "$HOME/goinfre/${TARGET[$i]}" "$HOME/Library/${TARGET[$i]}"
 	done
 	echo "Complete link all Cache dirs!"
 	# touch "$FLAG"
@@ -85,6 +79,7 @@ if [ ! -e "$FLAG" ]; then
 	echo "$BANNER"
 	init_cluster_mac
 fi
+
 
 # set -e
 
@@ -98,3 +93,5 @@ fi
 # brew팁
 # Brew install —cask 를 이용하면 브류에 등록된 앱들은 드래그조차 필요없답니다..!
 # —appdir 옵션으로 설치 위치도 바꿀 수 있어요!
+
+sleep 0.2
