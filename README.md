@@ -32,6 +32,15 @@ for 문을 돌면서 심볼릭링크처리를 해줍니다.
   rm -rf "$HOME/Library/${TARGET[$i]}"
   ln -s "$HOME/goinfre/${TARGET[$i]}" "$HOME/Library/${TARGET[$i]}"
 
+4. (추천사항)로그인 할때마다 실행시키기
+
+<img width="420" alt="Screen Shot 2023-05-04 at 3 41 44 PM" src="https://user-images.githubusercontent.com/26201797/236135447-4e4c6818-1087-4db0-b4f3-0720d90ddde2.png">
+
+<img width="666" alt="Screen Shot 2023-05-04 at 4 13 14 PM" src="https://user-images.githubusercontent.com/26201797/236135471-e617e235-41c4-46f0-a153-a4990942a57c.png">
+
+이렇게 설정해놓으면 간편하게 쓰기 좋습니다.
+
+
 
 # setup_mikim3.sh 사용시 주의사항
 
