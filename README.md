@@ -52,4 +52,6 @@ for 문을 돌면서 심볼릭링크처리를 해줍니다.
 
 <img width="563" alt="Screen Shot 2023-05-03 at 1 56 21 PM" src="https://user-images.githubusercontent.com/26201797/235835526-b3572701-a08f-430f-84dc-6182c7e354c3.png">
 
+- 그래도 문제가 있다면 ~/Library/Code 에 Code폴더 안에 내용을 전부 지우고 다시실행하면 기본설정으로 VSCode가 다시 실행됩니다.
+
 
