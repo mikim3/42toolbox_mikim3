@@ -7,6 +7,7 @@ echo "execute  mikim3's Mac init"
 
 BANNER="$(
   cat <<-EOF
+https://github.com/rlaalstn0107/42toolbox_mikim3
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
