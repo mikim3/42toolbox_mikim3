@@ -45,8 +45,12 @@ TARGET=(
 	"ApplicationSupport/Slack/Service Worker/CacheStorage"
 	"ApplicationSupport/Slack/Service Worker/ScriptCache"
 	"Containers/com.tinyspeck.slackmacgap"
+	"Developer/CoreSimulator/Devices"
 	# "ApplicationSupport/Code/User/workspaceStorage"
 )
+
+# Xcode를 통한 IOS개발 관련폴더
+# "Developer/CoreSimulator/Devices"
 
 # VSCode 내부데이터 저장 폴더
 TARGET_VSCODE=(
@@ -58,6 +62,18 @@ DIRS_VSCODE=( $(ls -t ${TARGET_VSCODE}) )
 if [ ${#DIRS_VSCODE[@]} -gt 7 ]; then
     for dir in "${DIRS_VSCODE[@]:7}"; do
         rm -rf "${TARGET_VSCODE}/${dir}"
+    done
+fi
+
+TARGET_KEYCHAINS=(
+	"$HOME/Library/Keychains"
+)
+
+DIRS_KEYCHAINS=( $(ls -t ${TARGET_KEYCHAINS}) )
+# 배열의 길이가 7 이상이면, 최신 7개를 제외한 디렉토리를 모두 삭제합니다.
+if [ ${#DIRS_KEYCHAINS[@]} -gt 7 ]; then
+    for dir in "${DIRS_KEYCHAINS[@]:7}"; do
+        rm -rf "${TARGET_KEYCHAINS}/${dir}"
     done
 fi
 
