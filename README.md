@@ -38,6 +38,10 @@ for 문을 돌면서 심볼릭링크처리를 해줍니다.
 
 <img width="666" alt="Screen Shot 2023-05-04 at 4 13 14 PM" src="https://user-images.githubusercontent.com/26201797/236135471-e617e235-41c4-46f0-a153-a4990942a57c.png">
 
+<img width="268" alt="Screen Shot 2023-08-16 at 1 23 40 PM" src="https://github.com/mikim3/42toolbox_mikim3/assets/26201797/a614e3da-1b53-41cd-ad2e-f0e92de010b9">
+
+
+
 이렇게 설정해놓으면 간편하게 쓰기 좋습니다.
 
 
