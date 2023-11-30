@@ -1,6 +1,6 @@
 #/bin/bash
 
-sleep 0.2
+sleep 0.1
 clear
 
 echo "execute  mikim3's Mac init"
@@ -47,6 +47,8 @@ TARGET=(
 	"Containers/com.tinyspeck.slackmacgap"
 	"Developer/CoreSimulator/Devices"
 	# "ApplicationSupport/Code/User/workspaceStorage"
+	"ApplicationSupport/Slack/logs"
+	"ApplicationSupport/Slack/IndexedDB"
 )
 
 # Xcode를 통한 IOS개발 관련폴더
@@ -65,6 +67,7 @@ if [ ${#DIRS_VSCODE[@]} -gt 7 ]; then
     done
 fi
 
+# "Keychains" // 자동로그인 관련해서 저장하는 폴더 삭제하면 불편해짐
 TARGET_KEYCHAINS=(
 	"$HOME/Library/Keychains"
 )
@@ -77,7 +80,6 @@ if [ ${#DIRS_KEYCHAINS[@]} -gt 7 ]; then
     done
 fi
 
-# "Keychains" // 자동로그인 관련해서 저장하는 폴더 삭제하면 불편해짐
 
 FLAG="$HOME/goinfre/is_mikim3_setup"
 
@@ -111,4 +113,4 @@ fi
 # Brew install —cask 를 이용하면 브류에 등록된 앱들은 드래그조차 필요없답니다..!
 # —appdir 옵션으로 설치 위치도 바꿀 수 있어요!
 
-sleep 0.2
+sleep 0.1
