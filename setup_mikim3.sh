@@ -1,5 +1,4 @@
 #/bin/bash
-
 sleep 0.1
 clear
 
@@ -67,6 +66,16 @@ if [ ${#DIRS_VSCODE[@]} -gt 7 ]; then
     done
 fi
 
+# 최근 7일 이내에 수정된 파일을 제외한 나머지 .zcompdump 파일들을 찾아서 삭제
+find $HOME -name '.zcompdump*' -type f -mtime +7 -exec rm -rf {} \;
+
+# npm 캐시 폴더 정리
+#/Users/mikim3/.npm/_cacache/content-v2/sha512
+
+
+# 최근 7일 이내에 수정된 파일을 제외한 나머지 .zcompdump 파일들을 찾아서 삭제
+find /Users/mikim3/.npm/_cacache/content-v2/sha512 -type d -mtime +7 -exec rm -rf {} \;
+
 # "Keychains" // 자동로그인 관련해서 저장하는 폴더 삭제하면 불편해짐
 TARGET_KEYCHAINS=(
 	"$HOME/Library/Keychains"
@@ -79,7 +88,6 @@ if [ ${#DIRS_KEYCHAINS[@]} -gt 7 ]; then
         rm -rf "${TARGET_KEYCHAINS}/${dir}"
     done
 fi
-
 
 FLAG="$HOME/goinfre/is_mikim3_setup"
 
