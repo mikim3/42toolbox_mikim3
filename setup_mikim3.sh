@@ -1,4 +1,5 @@
 #/bin/bash
+
 sleep 0.1
 clear
 
@@ -39,13 +40,17 @@ TARGET=(
 	"ApplicationSupport/Code/CachedExtensions"
 	"ApplicationSupport/Code/CachedExtensionVSIXs"
 	"ApplicationSupport/Code/Code Cache"
+	"ApplicationSupport/Cursor/Cache"
+	"ApplicationSupport/Cursor/CachedData"
+	"ApplicationSupport/Cursor/CachedExtensions"
+	"ApplicationSupport/Cursor/CachedExtensionVSIXs"
+	"ApplicationSupport/Cursor/Code Cache"
 	"ApplicationSupport/Slack/Cache"
 	"ApplicationSupport/Slack/CachedData"
 	"ApplicationSupport/Slack/Service Worker/CacheStorage"
 	"ApplicationSupport/Slack/Service Worker/ScriptCache"
 	"Containers/com.tinyspeck.slackmacgap"
 	"Developer/CoreSimulator/Devices"
-	# "ApplicationSupport/Code/User/workspaceStorage"
 	"ApplicationSupport/Slack/logs"
 	"ApplicationSupport/Slack/IndexedDB"
 )
@@ -63,6 +68,19 @@ DIRS_VSCODE=( $(ls -t ${TARGET_VSCODE}) )
 if [ ${#DIRS_VSCODE[@]} -gt 7 ]; then
     for dir in "${DIRS_VSCODE[@]:7}"; do
         rm -rf "${TARGET_VSCODE}/${dir}"
+    done
+fi
+
+# Cursor IDE 내부데이터 저장 폴더
+TARGET_CURSOR=(
+	"$HOME/Library/ApplicationSupport/Cursor/User/workspaceStorage"
+)
+
+DIRS_CURSOR=( $(ls -t ${TARGET_CURSOR}) )
+# 배열의 길이가 7 이상이면, 최신 7개를 제외한 디렉토리를 모두 삭제합니다.
+if [ ${#DIRS_CURSOR[@]} -gt 7 ]; then
+    for dir in "${DIRS_CURSOR[@]:7}"; do
+        rm -rf "${TARGET_CURSOR}/${dir}"
     done
 fi
 
@@ -106,7 +124,6 @@ if [ ! -e "$FLAG" ]; then
 	echo "$BANNER"
 	init_cluster_mac
 fi
-
 
 # set -e
 
