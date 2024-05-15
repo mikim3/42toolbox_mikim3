@@ -1,5 +1,4 @@
 #/bin/bash
-
 sleep 0.1
 clear
 
@@ -62,7 +61,6 @@ TARGET=(
 TARGET_VSCODE=(
 	"$HOME/Library/ApplicationSupport/Code/User/workspaceStorage"
 )
-
 DIRS_VSCODE=( $(ls -t ${TARGET_VSCODE}) )
 # 배열의 길이가 7 이상이면, 최신 7개를 제외한 디렉토리를 모두 삭제합니다.
 if [ ${#DIRS_VSCODE[@]} -gt 7 ]; then
@@ -75,7 +73,6 @@ fi
 TARGET_CURSOR=(
 	"$HOME/Library/ApplicationSupport/Cursor/User/workspaceStorage"
 )
-
 DIRS_CURSOR=( $(ls -t ${TARGET_CURSOR}) )
 # 배열의 길이가 7 이상이면, 최신 7개를 제외한 디렉토리를 모두 삭제합니다.
 if [ ${#DIRS_CURSOR[@]} -gt 7 ]; then
@@ -84,16 +81,24 @@ if [ ${#DIRS_CURSOR[@]} -gt 7 ]; then
     done
 fi
 
-# 최근 7일 이내에 수정된 파일을 제외한 나머지 .zcompdump 파일들을 찾아서 삭제
-find $HOME -name '.zcompdump*' -type f -mtime +7 -exec rm -rf {} \;
+# 최근 3일 이내에 수정된 파일을 제외한 나머지 .zcompdump 파일들을 찾아서 삭제
+find $HOME -name '.zcompdump*' -type f -mtime +3 -exec rm -rf {} \;
 
 # npm 캐시 폴더 정리
 #/Users/mikim3/.npm/_cacache/content-v2/sha512
 
+# 심볼릭 링크로 연결하여 npm 캐시 디렉토리를 goinfre로 이동
+NPM_CACHE_DIR="$HOME/goinfre/npm_cache"
+if [ ! -d "$NPM_CACHE_DIR" ]; then
+    mkdir -p "$NPM_CACHE_DIR"
+fi
 
-# 최근 7일 이내에 수정된 파일을 제외한 나머지 .zcompdump 파일들을 찾아서 삭제
-find /Users/mikim3/.npm/_cacache/content-v2/sha512 -type d -mtime +7 -exec rm -rf {} \;
+if [ -d "$HOME/.npm/_cacache" ]; then
+    rm -rf "$HOME/.npm/_cacache"
+fi
 
+ln -s "$NPM_CACHE_DIR" "$HOME/.npm/_cacache"
+echo "NPM cache directory linked to goinfre."
 # "Keychains" // 자동로그인 관련해서 저장하는 폴더 삭제하면 불편해짐
 TARGET_KEYCHAINS=(
 	"$HOME/Library/Keychains"
